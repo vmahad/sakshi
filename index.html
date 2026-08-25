@@ -1,2 +1,265 @@
-  <h1>Sakshi LLC</h1>
-  <p>Sakshi LLC is a software company based in California, United States.</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sadhana — Carnatic Music Practice App</title>
+  <meta name="description" content="Sadhana helps Carnatic music students and teachers manage practice, track progress, and collaborate in batches.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F4EF;
+      --surface: #FFFFFF;
+      --text: #1A1612;
+      --text2: #5A5450;
+      --text3: #9A9390;
+      --border: #E5DFD6;
+      --accent: #C8781A;
+      --accent-soft: #FDF3E7;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky; top: 0;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100; padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between; height: 56px;
+    }
+    .nav-logo { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--text2); text-decoration: none; font-weight: 500; transition: color .15s; }
+    .nav-links a:hover { color: var(--accent); }
+    @media (max-width: 540px) { .nav-links { display: none; } }
+
+    .inner { max-width: 860px; margin: 0 auto; }
+    section { padding: 72px 24px; }
+    hr.divider { border: none; border-top: 1px solid var(--border); }
+
+    /* HERO */
+    .hero { padding: 88px 24px 72px; text-align: center; }
+    .hero-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-soft);
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 5.5vw, 52px); font-weight: 700;
+      line-height: 1.1; letter-spacing: -.03em; text-wrap: balance;
+      margin-bottom: 18px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 17px; color: var(--text2);
+      max-width: 480px; margin: 0 auto; line-height: 1.65;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    @media (max-width: 620px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-tag { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+    .about-grid h2 { font-size: 28px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 14px; text-wrap: balance; }
+    .about-grid p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
+    .about-visual {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .av-row { display: flex; align-items: center; gap: 14px; }
+    .av-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .av-label { font-size: 13px; font-weight: 600; }
+    .av-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+
+    /* FEATURES */
+    .features-bg { background: var(--surface); }
+    .section-header { text-align: center; margin-bottom: 36px; }
+    .section-header .tag { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); }
+    .section-header h2 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-top: 8px; text-wrap: balance; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+    }
+    @media (max-width: 620px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px;
+    }
+    .feature-icon { font-size: 26px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .feature-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* SUPPORT */
+    #support { background: var(--accent-soft); }
+    .support-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 44px 40px;
+      text-align: center; max-width: 540px; margin: 0 auto;
+    }
+    .support-box h2 { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; }
+    .support-box p { font-size: 15px; color: var(--text2); line-height: 1.6; margin-bottom: 24px; }
+    .support-email-display {
+      display: inline-block;
+      font-size: 17px; font-weight: 600; color: var(--accent);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity .15s;
+    }
+    .support-email-display:hover { opacity: 0.75; }
+    .support-note { font-size: 13px; color: var(--text3); margin-top: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text); color: rgba(255,255,255,.45);
+      text-align: center; padding: 28px 24px; font-size: 13px;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; }
+    .footer-links a { color: rgba(255,255,255,.45); text-decoration: none; transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    footer strong { color: rgba(255,255,255,.8); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Sadhana<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#support">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="inner">
+    <div class="hero-eyebrow">Carnatic Music Practice</div>
+    <h1>Practice deeper.<br><em>Learn together.</em></h1>
+    <p class="hero-sub">Sadhana is an iOS app for Carnatic music students and teachers — track your practice, follow your teacher's guidance, and grow your craft one session at a time.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div>
+        <div class="about-tag">What is Sadhana</div>
+        <h2>A practice companion built for Carnatic learners</h2>
+        <p>Sadhana (साधना) means dedicated practice. Our app brings that spirit into a focused tool that helps students build consistent habits and helps teachers guide their batches — all in one place.</p>
+        <p>Whether you're learning vocal, veena, mridangam, or flute, Sadhana keeps your sessions structured and your progress visible.</p>
+      </div>
+      <div class="about-visual">
+        <div class="av-row">
+          <div class="av-icon">🥁</div>
+          <div><div class="av-label">Thalam &amp; Metronome</div><div class="av-sub">Adi, Rupakam, Misra Chapu &amp; more</div></div>
+        </div>
+        <div class="av-row">
+          <div class="av-icon">🎙</div>
+          <div><div class="av-label">Session Recording</div><div class="av-sub">Capture and review your practice</div></div>
+        </div>
+        <div class="av-row">
+          <div class="av-icon">📋</div>
+          <div><div class="av-label">Practice Log</div><div class="av-sub">Track every session over time</div></div>
+        </div>
+        <div class="av-row">
+          <div class="av-icon">🏫</div>
+          <div><div class="av-label">Batch Feed</div><div class="av-sub">Materials and notes from your teacher</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features" class="features-bg">
+  <div class="inner">
+    <div class="section-header">
+      <div class="tag">Features</div>
+      <h2>Everything you need to practice well</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⏱</div>
+        <h3>Thalam Keeper</h3>
+        <p>Built-in talam cycles with adjustable BPM. Keep your rhythm steady without a separate app.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎙</div>
+        <h3>Session Recording</h3>
+        <p>Record audio directly in the app and build a library of your progress over time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Practice Log</h3>
+        <p>See your history at a glance — ragas practiced, duration, and notes over time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏫</div>
+        <h3>Batch Collaboration</h3>
+        <p>Teachers post videos, PDFs, and voice notes. Students follow along in their batch feed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Timestamped Feedback</h3>
+        <p>Comments tied to exact moments in a recording — precise, contextual feedback.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Practice Sheets</h3>
+        <p>Share PDFs in the batch so students always have the latest materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="support">
+  <div class="inner">
+    <div class="support-box">
+      <h2>Support</h2>
+      <p>Questions about the app, trouble joining a batch, or anything else — reach us at the address below and we'll get back to you promptly.</p>
+      <a href="mailto:support@gosadhana.com" class="support-email-display">support@gosadhana.com</a>
+      <p class="support-note">Typically responds within 1–2 business days.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#support">Support</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+  <strong>Sadhana</strong> &nbsp;·&nbsp; &copy; 2026 Sakshi LLC. All rights reserved.
+</footer>
+
+</body>
+</html>
