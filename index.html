@@ -110,6 +110,24 @@
     .feature-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
     .feature-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
+    /* RELEASE */
+    #release { background: var(--surface); }
+    .release-box {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 18px; padding: 40px; text-align: center;
+      max-width: 620px; margin: 0 auto;
+    }
+    .release-box .about-tag { margin-bottom: 12px; }
+    .release-box h2 { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; text-wrap: balance; }
+    .release-box p { font-size: 15px; color: var(--text2); line-height: 1.65; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .release-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      font-size: 14px; font-weight: 600; padding: 12px 22px;
+      border-radius: 10px; transition: opacity .15s;
+    }
+    .release-cta:hover { opacity: .88; }
+
     /* SUPPORT */
     #support { background: var(--accent-soft); }
     .support-box {
@@ -149,6 +167,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#release">Release</a></li>
       <li><a href="#support">Support</a></li>
     </ul>
   </div>
@@ -234,6 +253,19 @@
         <h3>Practice Sheets</h3>
         <p>Share PDFs in the batch so students always have the latest materials.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="release">
+  <div class="inner">
+    <div class="release-box">
+      <div class="about-tag">New · Release 1</div>
+      <h2>Timestamped feedback, TestFlight preview</h2>
+      <p>Code review gave engineers precise, line-by-line feedback — Sadhana brings the same to Carnatic performance. See how teachers can pin comments to the exact moment in a student's recording, with threaded replies and a batch feed.</p>
+      <a class="release-cta" href="/release/">View the Release 1 deck →</a>
     </div>
   </div>
 </section>
