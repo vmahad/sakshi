@@ -44,7 +44,24 @@
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-size: 14px; color: var(--text2); text-decoration: none; font-weight: 500; transition: color .15s; }
     .nav-links a:hover { color: var(--accent); }
-    @media (max-width: 540px) { .nav-links { display: none; } }
+
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 8px; margin: 0 -8px; flex-direction: column; gap: 4px;
+    }
+    .nav-toggle span { width: 20px; height: 2px; background: var(--text); border-radius: 1px; }
+
+    @media (max-width: 540px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none; position: absolute; top: 56px; left: 0; right: 0;
+        flex-direction: column; gap: 4px; list-style: none;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+        padding: 12px 24px 18px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 10px 0; font-size: 15px; }
+    }
 
     .inner { max-width: 860px; margin: 0 auto; }
     section { padding: 72px 24px; }
@@ -164,7 +181,10 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">Sadhana<span>.</span></div>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#release">Release</a></li>
@@ -287,11 +307,27 @@
   <div class="footer-links">
     <a href="#about">About</a>
     <a href="#features">Features</a>
+    <a href="#release">Release</a>
     <a href="#support">Support</a>
     <a href="/privacy.html">Privacy Policy</a>
   </div>
   <strong>Sadhana</strong> &nbsp;·&nbsp; &copy; 2026 Sakshi LLC. All rights reserved.
 </footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 </body>
 </html>
