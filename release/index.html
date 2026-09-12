@@ -103,62 +103,90 @@
     margin-bottom: 64px;
   }
 
-  .analogy-grid {
+  .compare-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
+    grid-template-columns: 1fr auto 1fr;
     gap: 0;
-    align-items: start;
-    max-width: 820px;
+    align-items: stretch;
+    max-width: 760px;
     width: 100%;
   }
 
-  .analogy-col {
+  .compare-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 22px;
+  }
+  .compare-col.solution {
+    background: rgba(91,114,232,0.07);
+    border-color: rgba(91,114,232,0.25);
   }
 
-  .analogy-label {
+  .compare-label {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-tertiary);
   }
+  .compare-col.solution .compare-label { color: var(--indigo); }
 
-  .analogy-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--white);
-    line-height: 1.2;
-  }
-
-  .analogy-body {
-    font-size: 13px;
+  .compare-body {
+    font-size: 12.5px;
     font-weight: 300;
-    color: rgba(255,255,255,0.38);
+    color: rgba(255,255,255,0.4);
     line-height: 1.6;
-    max-width: 200px;
   }
+  .compare-col.solution .compare-body { color: rgba(255,255,255,0.48); }
 
-  .analogy-arrow {
+  .compare-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 24px;
-    padding-top: 28px;
+    padding: 0 20px;
     color: var(--indigo);
     opacity: 0.5;
     font-size: 18px;
   }
 
-  .analogy-col.highlight .analogy-title {
-    color: var(--indigo);
+  /* Mini chat mock — the problem */
+  .chat-mock { display: flex; flex-direction: column; gap: 6px; }
+  .chat-bubble {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.55);
+    font-size: 11.5px;
+    font-weight: 300;
+    padding: 6px 11px;
+    border-radius: 10px;
+    max-width: 92%;
+    line-height: 1.4;
   }
-  .analogy-col.highlight .analogy-body {
-    color: rgba(91,114,232,0.6);
+  .chat-bubble.self {
+    align-self: flex-end;
+    background: rgba(43,158,122,0.22);
+    color: rgba(255,255,255,0.7);
   }
+  .chat-bubble.muted { opacity: 0.6; font-style: italic; }
+
+  /* Mini comment card — the solution */
+  .mini-card {
+    background: var(--indigo-light);
+    border-left: 3px solid var(--indigo);
+    border-radius: 8px;
+    padding: 9px 11px 9px 9px;
+  }
+  .mini-reply {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    padding-left: 4px;
+  }
+  .mini-reply strong { color: rgba(255,255,255,0.65); font-weight: 600; }
 
   .slide-1-badge {
     margin-top: 56px;
@@ -510,8 +538,8 @@
     .slide { padding: 64px 24px; }
     .deck-wordmark { top: 24px; left: 24px; }
     .slide-2-inner { grid-template-columns: 1fr; gap: 28px; }
-    .analogy-grid { grid-template-columns: 1fr; gap: 24px; }
-    .analogy-arrow { display: none; }
+    .compare-grid { grid-template-columns: 1fr; gap: 16px; }
+    .compare-arrow { display: none; }
   }
 </style>
 
@@ -523,38 +551,40 @@
     <div class="eyebrow">Release 1 · TestFlight Preview</div>
 
     <h1 class="slide-1-headline">
-      Code review gave engineers<br>
-      <em>precise, line-by-line feedback.</em><br>
-      Music deserves the same.
+      Your teacher's best notes<br>
+      <em>are buried in a group chat.</em>
     </h1>
 
     <p class="slide-1-sub">
-      Before code review, feedback was vague: "this function is messy."
-      After: "line 42 — this will fail on null input."
-      Sadhana does the same for Carnatic performance.
+      Voice notes, corrections, and "good job!" messages all land in the same WhatsApp thread. By next week, no one remembers which comment matched which moment — or which reply belongs where. Release 1 fixes that.
     </p>
 
-    <div class="analogy-grid">
-      <div class="analogy-col">
-        <span class="analogy-label">Software</span>
-        <span class="analogy-title">Code Review</span>
-        <p class="analogy-body">Engineers leave comments on specific lines of a pull request. Feedback is precise, actionable, and tied to the exact moment in the code.</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <span class="compare-label">Today · Group Chat</span>
+        <div class="chat-mock">
+          <div class="chat-bubble">🎙 Voice note — 0:42</div>
+          <div class="chat-bubble">"fix the gamaka somewhere in the middle"</div>
+          <div class="chat-bubble self">ok will try 🙏</div>
+          <div class="chat-bubble muted">can someone send the varnam pdf?</div>
+          <div class="chat-bubble">🎙 Voice note — 1:15</div>
+        </div>
+        <p class="compare-body">Feedback, questions, and unrelated chatter pile into one long scroll. Comments have no place to live, and replies get lost in the noise.</p>
       </div>
 
-      <div class="analogy-arrow">→</div>
+      <div class="compare-arrow">→</div>
 
-      <div class="analogy-col">
-        <span class="analogy-label">The shift</span>
-        <span class="analogy-title">Performance Review</span>
-        <p class="analogy-body">Students submit practice videos. Teachers comment at the exact timestamp — 0:34, 1:12 — tied to the precise moment in the recording.</p>
-      </div>
-
-      <div class="analogy-arrow">→</div>
-
-      <div class="analogy-col highlight">
-        <span class="analogy-label">Sadhana</span>
-        <span class="analogy-title">Timestamped Feedback</span>
-        <p class="analogy-body">No more "your kalam was off somewhere in the middle." Now: <em style="color:rgba(91,114,232,0.8);font-style:italic;">at 1:12 — the sangati transition here needs work.</em></p>
+      <div class="compare-col solution">
+        <span class="compare-label">With Sadhana</span>
+        <div class="mini-card">
+          <div class="comment-top">
+            <span class="ts-pill-inline">0:34</span>
+            <span class="comment-author">Smt. Meenakshi S.</span>
+          </div>
+          <p class="comment-text">Narrow the gamaka here — compare to the reference at this exact phrase.</p>
+        </div>
+        <div class="mini-reply">↳ <strong>Ananya K.</strong> Got it — re-recording this line today.</div>
+        <p class="compare-body">Every note is pinned to the exact second it's about, and replies stay threaded to that comment — never lost in a group chat.</p>
       </div>
     </div>
 
