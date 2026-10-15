@@ -85,6 +85,14 @@
       font-size: 17px; color: var(--text2);
       max-width: 480px; margin: 0 auto; line-height: 1.65;
     }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 24px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      font-size: 14px; font-weight: 600; padding: 12px 22px;
+      border-radius: 10px; transition: opacity .15s;
+    }
+    .hero-cta:hover { opacity: .88; }
 
     /* ABOUT */
     .about-grid {
@@ -144,6 +152,11 @@
       border-radius: 10px; transition: opacity .15s;
     }
     .release-cta:hover { opacity: .88; }
+    .demo-caption {
+      font-size: 13.5px; font-weight: 600; color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .demo-caption a { color: inherit; text-decoration: underline; }
     .demo-frame-wrap {
       max-width: 420px; margin: 0 auto 28px;
       border-radius: 18px; overflow: hidden;
@@ -196,7 +209,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#features">Features</a></li>
-      <li><a href="#release">Release</a></li>
+      <li><a href="#demo">Demo</a></li>
       <li><a href="#support">Support</a></li>
     </ul>
   </div>
@@ -207,6 +220,7 @@
     <div class="hero-eyebrow">Carnatic Music Practice</div>
     <h1>Practice deeper.<br><em>Learn together.</em></h1>
     <p class="hero-sub">Sadhana is an iOS app for Carnatic music students and teachers — track your practice, follow your teacher's guidance, and grow your craft one session at a time.</p>
+    <a class="hero-cta" href="#demo">▶ Watch a 1-minute demo</a>
   </div>
 </section>
 
@@ -294,7 +308,8 @@
       <div class="about-tag">New · Release 1</div>
       <h2>For every batch, every class has its own thread</h2>
       <p>Sadhana is a structured learning platform built around the batch. Every class or lesson has its own thread — the class recording lives there, students post their practice videos in response, and feedback gets pinned to the exact moment it's about. Anyone in the batch — student, teacher, or parent — can also start a thread of their own.</p>
-      <div class="demo-frame-wrap">
+      <div class="demo-caption">▶ See it in action — tap play inside the phone below, or <a href="/demo/avartanam.html" target="_blank" rel="noopener">open the demo on its own page</a></div>
+      <div class="demo-frame-wrap" id="demo">
         <iframe src="/demo/avartanam.html" title="Sadhana demo: a practice submission and timestamped teacher feedback moving through one batch thread" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
       <a class="release-cta" href="/release/">View the Release 1 deck →</a>
