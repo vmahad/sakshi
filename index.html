@@ -144,6 +144,15 @@
       border-radius: 10px; transition: opacity .15s;
     }
     .release-cta:hover { opacity: .88; }
+    .demo-frame-wrap {
+      max-width: 420px; margin: 0 auto 28px;
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 12px 32px -12px rgba(26,22,18,.25);
+    }
+    .demo-frame-wrap iframe {
+      display: block; width: 100%; height: 820px;
+      border: none;
+    }
 
     /* SUPPORT */
     #support { background: var(--accent-soft); }
@@ -285,6 +294,9 @@
       <div class="about-tag">New · Release 1</div>
       <h2>For every batch, every class has its own thread</h2>
       <p>Sadhana is a structured learning platform built around the batch. Every class or lesson has its own thread — the class recording lives there, students post their practice videos in response, and feedback gets pinned to the exact moment it's about. Anyone in the batch — student, teacher, or parent — can also start a thread of their own.</p>
+      <div class="demo-frame-wrap">
+        <iframe src="/demo/avartanam.html" title="Sadhana demo: a practice submission and timestamped teacher feedback moving through one batch thread" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
       <a class="release-cta" href="/release/">View the Release 1 deck →</a>
     </div>
   </div>
