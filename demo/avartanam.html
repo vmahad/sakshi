@@ -364,6 +364,33 @@
   .score-video{
     position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;
   }
+  .mute-badge{
+    position:absolute;
+    top:-14px;right:-8px;
+    z-index:4;
+    display:flex;align-items:center;gap:5px;
+    background:rgba(0,0,0,.62);
+    color:var(--ivory);
+    padding:6px 11px 6px 9px;
+    border-radius:100px;
+    font-size:10.5px;font-weight:600;letter-spacing:.01em;
+    pointer-events:none;
+    opacity:0;
+    transform:translateY(-4px);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .mute-badge.visible{
+    opacity:1;
+    transform:translateY(0);
+    animation:muteBadgePulse 1.7s ease-in-out infinite;
+  }
+  @keyframes muteBadgePulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(231,187,92,0);}
+    50%{box-shadow:0 0 0 6px rgba(231,187,92,.16);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .mute-badge.visible{animation:none;}
+  }
   button.mute{
     background:none;border:1px solid rgba(201,154,62,.4);
     color:var(--gold);border-radius:100px;
@@ -636,6 +663,14 @@
         <span class="tri"></span>
       </span>
     </button>
+    <div class="mute-badge" id="muteBadge" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="22" y1="9" x2="16" y2="15"></line>
+        <line x1="16" y1="9" x2="22" y2="15"></line>
+      </svg>
+      <span>Tap for sound</span>
+    </div>
   </div>
 
   <div class="caption">
@@ -663,6 +698,7 @@
   var stageTapBtn = document.getElementById("stageTapBtn");
   var scoreVideo = document.getElementById("scoreVideo");
   var soundHint = document.getElementById("soundHint");
+  var muteBadge = document.getElementById("muteBadge");
   var muteBtn = document.getElementById("muteBtn");
   var fullBtn = document.getElementById("fullBtn");
 
@@ -732,6 +768,10 @@
   function updateMuteUI(){
     muteBtn.setAttribute("aria-pressed", String(scoreVideo.muted));
     muteBtn.textContent = "Score: " + (scoreVideo.muted ? "off" : "on");
+    // The corner badge is specifically for the "autoplay had to start
+    // muted" case -- not every time the score happens to be off -- so it
+    // tracks autoplayMuted, not scoreVideo.muted on its own.
+    muteBadge.classList.toggle("visible", autoplayMuted);
   }
 
   function updateStageUI(){
