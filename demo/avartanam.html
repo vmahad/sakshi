@@ -715,6 +715,21 @@
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
     if (audioCtx.state === "suspended") audioCtx.resume().catch(function(){});
+    // iOS Safari's audio session isn't actually unlocked by resume() alone --
+    // ctx.state can report "running" while real output stays silent until a
+    // sound-producing node has start()'d synchronously inside a user gesture.
+    // The tanpura buffer itself only starts later, after the async
+    // decodeAudioData() call resolves, which is too late for that gesture to
+    // count on iOS. A throwaway one-sample silent buffer, start()'d here
+    // (synchronously, every time this runs from a tap), satisfies that
+    // requirement for free and is what actually unlocks audio on iPhones.
+    try {
+      var unlockBuffer = audioCtx.createBuffer(1, 1, audioCtx.sampleRate);
+      var unlockSrc = audioCtx.createBufferSource();
+      unlockSrc.buffer = unlockBuffer;
+      unlockSrc.connect(audioCtx.destination);
+      unlockSrc.start(0);
+    } catch (e) {}
     return audioCtx;
   }
 
