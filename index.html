@@ -18,6 +18,10 @@
       --border: #E5DFD6;
       --accent: #C8781A;
       --accent-soft: #FDF3E7;
+      --success: #3F7D58;
+      --success-soft: #EAF3EC;
+      --pending: #8A7E6E;
+      --pending-soft: #F1ECE3;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -123,17 +127,45 @@
     .section-header { text-align: center; margin-bottom: 36px; }
     .section-header .tag { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); }
     .section-header h2 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-top: 8px; text-wrap: balance; }
-    .features-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
     }
-    @media (max-width: 620px) { .features-grid { grid-template-columns: 1fr; } }
-    .feature-card {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 14px; padding: 22px;
+    .feature-table thead th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--text3);
+      padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--bg);
     }
-    .feature-icon { font-size: 26px; margin-bottom: 12px; }
-    .feature-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
-    .feature-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .feature-table tbody td {
+      padding: 16px 20px; font-size: 14px; color: var(--text2);
+      border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .feature-table tbody tr:last-child td { border-bottom: none; }
+    .feature-table td.f-name { font-weight: 600; color: var(--text); white-space: nowrap; }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 100px; white-space: nowrap;
+    }
+    .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .status-pill.live { background: var(--success-soft); color: var(--success); }
+    .status-pill.soon { background: var(--pending-soft); color: var(--pending); }
+
+    @media (max-width: 620px) {
+      .feature-table, .feature-table thead, .feature-table tbody,
+      .feature-table th, .feature-table td, .feature-table tr { display: block; }
+      .feature-table thead { display: none; }
+      .feature-table tr { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+      .feature-table tr:last-child { border-bottom: none; }
+      .feature-table td { padding: 3px 0; border-bottom: none; }
+      .feature-table td.f-name { font-size: 15px; margin-bottom: 2px; }
+      .feature-table td[data-label]::before {
+        content: attr(data-label); display: block; font-size: 10px; font-weight: 600;
+        letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin-bottom: 2px;
+      }
+    }
 
     /* RELEASE */
     #release { background: var(--surface); }
@@ -252,38 +284,53 @@
       <div class="tag">Features</div>
       <h2>Everything you need to practice well</h2>
     </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⏱</div>
-        <h3>Thalam Keeper</h3>
-        <p>Built-in talam cycles with adjustable BPM. Keep your rhythm steady without a separate app.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎙</div>
-        <h3>Session Recording</h3>
-        <p>Record audio directly in the app and build a library of your progress over time.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Practice Log</h3>
-        <p>See your history at a glance — ragas practiced, duration, and notes over time.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏫</div>
-        <h3>Batch Collaboration</h3>
-        <p>Class recordings, PDFs, and voice notes all live in one batch feed, so students always know where to look.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3>Timestamped Feedback</h3>
-        <p>Comments tied to exact moments in a recording — precise, contextual feedback.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📄</div>
-        <h3>Practice Sheets</h3>
-        <p>PDFs and practice materials for the batch stay in one place, so students always have the latest version.</p>
-      </div>
-    </div>
+    <table class="feature-table">
+      <thead>
+        <tr><th>Feature</th><th>What it does</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="f-name">Thalam Keeper</td>
+          <td data-label="What it does">Built-in talam cycles with adjustable BPM — keep your rhythm steady without a separate app.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Session Recording</td>
+          <td data-label="What it does">Record your own practice — audio or video — directly in the app and build a library over time.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Class Recording</td>
+          <td data-label="What it does">The week's class recording lives in the batch feed — not lost in a WhatsApp scroll.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Timestamped Feedback</td>
+          <td data-label="What it does">Comments tied to the exact moment in a recording — precise, contextual feedback.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Practice Log</td>
+          <td data-label="What it does">See your history at a glance — ragas practiced, duration, and notes over time.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Practice Sheets</td>
+          <td data-label="What it does">PDFs and practice materials stay in one place, so students always have the latest version.</td>
+          <td data-label="Status"><span class="status-pill live"><span class="dot"></span>Available</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Class Reminders</td>
+          <td data-label="What it does">A nudge before class starts, so no one has to remember on their own.</td>
+          <td data-label="Status"><span class="status-pill soon"><span class="dot"></span>Coming soon</span></td>
+        </tr>
+        <tr>
+          <td class="f-name">Fee Tracking &amp; Status</td>
+          <td data-label="What it does">Parents mark their Zelle payment as paid; teachers see who's paid for the class at a glance.</td>
+          <td data-label="Status"><span class="status-pill soon"><span class="dot"></span>Coming soon</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
